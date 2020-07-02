@@ -12,6 +12,10 @@ The original example contains code for the usage of only one of the two availabl
 
 Atmel's ASF drivers for MCAN do not allow fine control of the baudrate parameters, so a patch is needed. The patch implemented here is based on the solution presented in @borkedLabs 2017 article: https://borkedlabs.com/blog/2017/09-24-samc21-same70-samv71-canbus-bosch-lessons-learned/
 
+The patch affects the following files:
+- `src/ASF/sam/drivers/mcan/mcan.h` (`mcan_set_baudrate` prototype)
+- `src/ASF/sam/drivers/mcan/mcan.c` (`mcan_set_baudrate` and `_mcan_set_configuration`)
+
 #### Bit timing values
 
 Bit timing values, defined in `conf_mcan.h`, were obtained experimentally in order to achieve a 1Mbps baudrate.

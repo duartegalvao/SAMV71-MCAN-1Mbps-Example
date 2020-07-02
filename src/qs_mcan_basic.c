@@ -462,7 +462,7 @@ int main(void)
 		case '4':
 			printf("  4: MCAN0 - Set extended filter ID 0: 0x100000A5, store into Rx buffer. \r\n");
 			mcan_set_extended_filter_0(&mcan0_instance);
-			break;
+			break; 
 
 		case '5':
 			printf("  5: MCAN0 - Set extended filter ID 1: 0x10000096, store into Rx FIFO 1. \r\n");

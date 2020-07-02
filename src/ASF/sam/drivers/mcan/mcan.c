@@ -296,7 +296,10 @@ void mcan_init(struct mcan_module *const module_inst, Mcan *hw,
  * \brief Set MCAN baudrate.
  *
  * \param[in]  hw          Pointer to the MCAN module instance
- * \param[in]  baudrate    MCAN baudrate
+ * \param[in]  nbrp        MCAN baudrate pre-scaler
+ * \param[in]  nsjw        MCAN synchronization jump width (TQs)
+ * \param[in]  ntseg1      MCAN segment 1 width (TQs)
+ * \param[in]  ntseg2      MCAN segment 2 width (TQs)
  */
 void mcan_set_baudrate(Mcan* hw, uint32_t nbrp, uint32_t nsjw, uint32_t ntseg1, uint32_t ntseg2)
 {
