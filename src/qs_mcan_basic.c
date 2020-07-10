@@ -94,6 +94,11 @@ static struct mcan_module mcan0_instance;
 static struct mcan_module mcan1_instance;
 
 
+/* STBY IO pins */
+#define PIO_STBY0_IDX	PIO_PA0_IDX
+#define PIO_STBY1_IDX	PIO_PA6_IDX
+
+
 /* mcan_filter_setting */
 #define MCAN_RX_STANDARD_FILTER_INDEX_0    0
 #define MCAN_RX_STANDARD_FILTER_INDEX_1    1
@@ -414,18 +419,18 @@ int main(void)
 	board_init();
 
 	configure_console();
+	
+	/* configure MCAN controllers */
 	configure_mcan(&mcan0_instance, MCAN0, MCAN0_INT0_IRQn);
 	configure_mcan(&mcan1_instance, MCAN1, MCAN1_INT0_IRQn);
-
-	ioport_set_pin_mode(PIO_PD27_IDX, PIO_INPUT);
-	ioport_set_pin_mode(PIO_PD11_IDX, PIO_INPUT);
 	
-	ioport_set_pin_dir(PIO_PC19_IDX, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_dir(PIO_PA2_IDX, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_mode(PIO_PC19_IDX, IOPORT_MODE_OPEN_DRAIN | IOPORT_MODE_GLITCH_FILTER);
-	ioport_set_pin_mode(PIO_PA2_IDX, IOPORT_MODE_OPEN_DRAIN | IOPORT_MODE_GLITCH_FILTER);
-	ioport_set_pin_level(PIO_PC19_IDX, IOPORT_PIN_LEVEL_HIGH);
-	ioport_set_pin_level(PIO_PA2_IDX, IOPORT_PIN_LEVEL_LOW);
+	/* configure STBY pins */
+	ioport_set_pin_dir(PIO_STBY0_IDX, IOPORT_DIR_OUTPUT);
+	ioport_set_pin_dir(PIO_STBY1_IDX, IOPORT_DIR_OUTPUT);
+	ioport_set_pin_mode(PIO_STBY0_IDX, IOPORT_MODE_OPEN_DRAIN | IOPORT_MODE_GLITCH_FILTER);
+	ioport_set_pin_mode(PIO_STBY1_IDX, IOPORT_MODE_OPEN_DRAIN | IOPORT_MODE_GLITCH_FILTER);
+	ioport_set_pin_level(PIO_STBY0_IDX, IOPORT_PIN_LEVEL_LOW);
+	ioport_set_pin_level(PIO_STBY1_IDX, IOPORT_PIN_LEVEL_HIGH);
 
 	display_menu();
 
